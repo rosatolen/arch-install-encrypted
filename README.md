@@ -2,8 +2,11 @@ This is an experiment to ease installation of a secure arch linux system.
 
 While it automates many of the processes involved, it also serves as a guide for securing your system.
 
+WARNING: This is still in development. Please read through each script thoroughly before running it. The commands are short and based upon the ArchLinux Beginner's Guide.
+
 ## Features
 * Encrypted Hard Drive
+* Separate Partition for Boot
 
 ## How To Use
 1. Please boot into an Arch Linux Installation Medium (USB Arch Install, etc.)
