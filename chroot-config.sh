@@ -42,6 +42,8 @@ mkinitcpio -p linux
 
 ##############################################
 # Add user
+# Include home directory
 ##############################################
-useradd -m $USERNAME
+HOME_DIR=/home/$USERNAME
+useradd -d $HOME_DIR -m $USERNAME
 passwd $USERNAME
