@@ -32,4 +32,4 @@ ArchLinux Beginner's Guide.
 * Remove manual steps
 * Configure a USB drive as the boot partition
 * Install all archlinux packages from a given list (maybe)
-
+* More security defaults
