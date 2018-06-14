@@ -1,4 +1,4 @@
-Archlinux Encrypted HD Script
+# Archlinux Encrypted HD Script
 
 This is an effort to create scripts for installing Archlinux with an encrypted
 hard drive.
