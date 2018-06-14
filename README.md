@@ -1,16 +1,35 @@
-This is an experiment to ease installation of a secure arch linux system.
+Archlinux Encrypted HD Script
 
-While it automates many of the processes involved, it also serves as a guide for securing your system.
+This is an effort to create scripts for installing Archlinux with an encrypted
+hard drive.
 
-WARNING: This is still in development. Please read through each script thoroughly before running it. The commands are short and based upon the ArchLinux Beginner's Guide.
+### WARNING:
 
-## Features
-* Encrypted Hard Drive
-* Separate Partition for Boot
+This is still in development.  Please read through the script thoroughly
+before running it or using the commands. Change them according to your
+preferences. The commands are short and based upon the Arch wiki and the
+ArchLinux Beginner's Guide.
+
+## What this doesn't do
+
+* Handle configuration of a UEFI boot partition. Legacy boot is expected in the
+  script
+* Teach you how to set up swap partitions or configure a fancier partition
+  system
 
 ## How To Use
-1. Please boot into an Arch Linux Installation Medium (USB Arch Install, etc.)
-2. Run `partition.sh`
-3. Run `chroot-config.sh`
-4. Run `provision.sh`
-5. Run `pacaur.sh`
+
+1. Boot into an Arch Linux Installation Medium (USB Arch Install, etc.)
+2. Clone https://github.com/rosatolen/arch_install_enc_hd
+3. Navigate into the repo and read through `setup.sh`
+4. Run each command in `setup.sh` separately. After you use the arch-chroot
+   command you may want to open it on a separate computer or copy it somewhere
+   into /mnt for reference while in the chroot. This is recommended because,
+   several important steps are still manual.
+
+## Future Features
+
+* Remove manual steps
+* Configure a USB drive as the boot partition
+* Install all archlinux packages from a given list (maybe)
+
