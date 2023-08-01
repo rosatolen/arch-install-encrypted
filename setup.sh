@@ -32,7 +32,7 @@ MAIN_ENCRYPTED_PARTITION=/dev/sda2
 ## This assumes we are using a legacy (non UEFI) boot system
 #######################################################################
 parted "$BOOT_DRIVE" mklabel msdos
-parted "$BOOT_DRIVE" mkpart primary ext3 1MiB 100MiB
+parted "$BOOT_DRIVE" mkpart primary ext3 1MiB 1GiB
 parted "$BOOT_DRIVE" set 1 boot on
 
 #######################################################################
@@ -56,7 +56,6 @@ parted "$MAIN_DRIVE" mkpart primary ext3 100MiB 100%
 cryptsetup luksFormat "$MAIN_ENCRYPTED_PARTITION"
 cryptsetup open "$MAIN_ENCRYPTED_PARTITION" base
 
-mkfs.ext4 "$BOOT_PARTITION"
 mkfs.ext4 /dev/mapper/base
 mount /dev/mapper/base /mnt
 mkdir /mnt/boot
@@ -67,7 +66,7 @@ mount "$BOOT_PARTITION" /mnt/boot
 ## Install the base Archlinux system to the main partition and
 ## generate your new fstab file
 #######################################################################
-pacstrap -i /mnt base base-devel
+pacstrap -K /mnt base base-devel
 genfstab -U /mnt > /mnt/etc/fstab
 
 ###################################################################
@@ -86,9 +85,9 @@ arch-chroot /mnt /bin/bash
 ## Configure your language settings. Uncomment the next 3 commands
 ## to use english settings.
 ###################################################################
-# echo 'en_US.UTF-8 UTF-8' >> /etc/locale.gen
-# locale-gen
-# echo 'LANG=en_US.UTF-8' > /etc/locale.conf
+echo 'en_US.UTF-8 UTF-8' >> /etc/locale.gen
+locale-gen
+echo 'LANG=en_US.UTF-8' > /etc/locale.conf
 
 ###################################################################
 ## STEP 7
@@ -97,6 +96,9 @@ arch-chroot /mnt /bin/bash
 ###################################################################
 ln -s /usr/share/zoneinfo/America/Los_Angeles /etc/localtime
 hwclock --systohc --utc
+
+# Setup your hostname
+# echo 'myhostname' > /etc/hostname
 
 ###################################################################
 ## STEP 8
@@ -126,7 +128,9 @@ grub-mkconfig -o /boot/grub/grub.cfg
 ###################################################################
 vi etc/mkinitcpio.conf
 
-mkinitcpio -p linux
+mkinitcpio -P
+
+passwd
 
 ##########################################################################
 ## STEP 10
